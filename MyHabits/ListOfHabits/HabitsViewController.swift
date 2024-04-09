@@ -24,13 +24,14 @@ class HabitsViewController: UIViewController {
         
         return collectionView
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupView()
         setupSubviews()
         setupLayouts()
+        subscribeOnNotificationCenter()
         
         let addHabitButton = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .done, target: self, action: #selector(pressedButton))
         
@@ -48,11 +49,11 @@ class HabitsViewController: UIViewController {
     @objc func pressedButton () {
         var habitNavigationController: UINavigationController!
         habitNavigationController = UINavigationController(rootViewController: HabitViewController())
-
+        
         habitNavigationController.modalTransitionStyle = .coverVertical
         habitNavigationController.modalPresentationStyle = .fullScreen
         present(habitNavigationController, animated: true)
-}
+    }
     
     private func setupView() {
         view.backgroundColor = .white
@@ -79,15 +80,29 @@ class HabitsViewController: UIViewController {
         ])
     }
     
-    private enum LayoutConstant {
-           static let spacing: CGFloat = 16.0
-           static let itemProgressHeight: CGFloat = 65.0
-        static let itemHabitHeight: CGFloat = 140.0
-       }
-
+    func subscribeOnNotificationCenter() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(notificationAction),
+            name: .updateProgress,
+            object: nil
+        )
+    }
+    
+    @objc func notificationAction() {
+        habitsCollectionView.reloadData()
+        
+    }
 }
 
+
 extension HabitsViewController: UICollectionViewDataSource {
+    
+    private enum LayoutConstant {
+        static let spacing: CGFloat = 16.0
+        static let itemProgressHeight: CGFloat = 65.0
+        static let itemHabitHeight: CGFloat = 140.0
+    }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         2
@@ -132,16 +147,16 @@ extension HabitsViewController: UICollectionViewDataSource {
 extension HabitsViewController: UICollectionViewDelegateFlowLayout{
     
     private func itemWidth(
-            for width: CGFloat,
-            spacing: CGFloat
-        ) -> CGFloat {
-            let itemsInRow: CGFloat = 1
-            
-            let totalSpacing: CGFloat = 2 * spacing + (itemsInRow - 1) * spacing
-            let finalWidth = (width - totalSpacing) / itemsInRow
-            
-            return floor(finalWidth)
-        }
+        for width: CGFloat,
+        spacing: CGFloat
+    ) -> CGFloat {
+        let itemsInRow: CGFloat = 1
+        
+        let totalSpacing: CGFloat = 2 * spacing + (itemsInRow - 1) * spacing
+        let finalWidth = (width - totalSpacing) / itemsInRow
+        
+        return floor(finalWidth)
+    }
     func collectionView(
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
@@ -185,7 +200,7 @@ extension HabitsViewController: UICollectionViewDelegateFlowLayout{
         _ collectionView: UICollectionView,
         didSelectItemAt indexPath: IndexPath) {
             if indexPath.section == 1 {
-        
+                
                 let habit = HabitsStore.shared.habits[indexPath.row]
                 let habitDetailsViewController = HabitDetailsViewController()
                 habitDetailsViewController.habit = habit
@@ -193,6 +208,6 @@ extension HabitsViewController: UICollectionViewDelegateFlowLayout{
                 habitDetailsViewController.indexOfHabit = indexPath.row
                 navigationController?.pushViewController(habitDetailsViewController, animated: true)
             }
-    }
+        }
 }
 

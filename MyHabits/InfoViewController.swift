@@ -37,7 +37,7 @@ class InfoViewController: UIViewController {
         text.translatesAutoresizingMaskIntoConstraints = false
         return text
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -107,7 +107,7 @@ class InfoViewController: UIViewController {
             headlineInfo.heightAnchor.constraint(
                 equalToConstant: 20
             ),
-        
+            
             textInfo.topAnchor.constraint(
                 equalTo: headlineInfo.bottomAnchor,
                 constant: 25

@@ -47,11 +47,11 @@ class HabitDetailsViewController: UIViewController {
         
         habitViewController.exist = true
         habitViewController.index = indexOfHabit
-
+        
         habitNavigationController.modalTransitionStyle = .coverVertical
         habitNavigationController.modalPresentationStyle = .fullScreen
         present(habitNavigationController, animated: true)
-}
+    }
     
     private func setupView() {
         view.backgroundColor = .white
@@ -103,7 +103,7 @@ extension HabitDetailsViewController: UITableViewDataSource {
         }
         
         let index = indexPath.item
-            cell.update(index, habit)
+        cell.update(index, habit)
         
         return cell
     }

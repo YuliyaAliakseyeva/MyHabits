@@ -10,8 +10,8 @@ import UIKit
 class HabitCollectionViewCell: UICollectionViewCell {
     
     private enum Constants {
-            static let contentViewCornerRadius: CGFloat = 8.0
-        }
+        static let contentViewCornerRadius: CGFloat = 8.0
+    }
     
     private lazy var habitsNameLabel: UILabel = {
         let label = UILabel(frame: .zero)
@@ -57,15 +57,19 @@ class HabitCollectionViewCell: UICollectionViewCell {
         habitImage.tintColor = habitsNameLabel.textColor
         print("привычка затрекана")
         closure?()
+        
+        NotificationCenter.default.post(name: .updateProgress, object: nil)
+        
     }
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
-    
+        
         setupView()
         addSubviews()
         setupSubviews()
         setupConstrains()
+        subscribeOnNotificationCenter()
     }
     
     required init?(coder: NSCoder) {
@@ -123,7 +127,7 @@ class HabitCollectionViewCell: UICollectionViewCell {
             timeLabel.trailingAnchor.constraint(
                 equalTo: habitsNameLabel.trailingAnchor
             ),
-
+            
             counterLabel.leadingAnchor.constraint(
                 equalTo: habitsNameLabel.leadingAnchor
             ),
@@ -179,4 +183,22 @@ class HabitCollectionViewCell: UICollectionViewCell {
             print("Error")
         }
     }
+    
+    func subscribeOnNotificationCenter() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(notificationAction),
+            name: .updateProgress,
+            object: nil
+        )
+    }
+    
+    @objc func notificationAction() {
+        print("Подписка на notification center")
+    }
+    
+}
+
+extension NSNotification.Name {
+    static let updateProgress = NSNotification.Name(rawValue: "updateProgress")
 }

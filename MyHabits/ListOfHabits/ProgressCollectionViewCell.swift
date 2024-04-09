@@ -8,19 +8,19 @@
 import UIKit
 
 private enum Constants {
-        static let contentViewCornerRadius: CGFloat = 8.0
+    static let contentViewCornerRadius: CGFloat = 8.0
 }
 
 class ProgressCollectionViewCell: UICollectionViewCell {
     
     private lazy var text: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private lazy var percent: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

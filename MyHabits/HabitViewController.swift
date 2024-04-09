@@ -89,15 +89,15 @@ public class HabitViewController: UIViewController {
         return button
     }()
     
-   
+    
     public override func viewDidLoad() {
         super.viewDidLoad()
-       
+        
         setupView()
         addSubviews()
         setupConstrains()
         setupSubviews()
-       
+        
     }
     
     @objc func selectedColor() {
@@ -117,8 +117,8 @@ public class HabitViewController: UIViewController {
     @objc func safedHabit () {
         if exist {
             let editedHabit = Habit(name: habitsNameTextField.text ?? "Что-то пошло не так",
-                                 date: timePiker.date,
-                                 color: colorImage.tintColor)
+                                    date: timePiker.date,
+                                    color: colorImage.tintColor)
             
             store.habits[index!].name = editedHabit.name
             store.habits[index!].date = editedHabit.date
@@ -130,15 +130,15 @@ public class HabitViewController: UIViewController {
             store.habits.append(newHabit)
             
             dismiss(animated: true)
-        
+            
             print("Привычка сохранена")
         }
-}
+    }
     
     @objc func canceledNewHabit () {
         dismiss(animated: true)
         print("Отмена создания новой привычки")
-}
+    }
     
     @objc func timeChanged() {
         getTimeFromDatePiker(date: timePiker.date)
@@ -159,7 +159,7 @@ public class HabitViewController: UIViewController {
         
         present(alert, animated: true)
     }
-
+    
     private func setupView() {
         
         view.backgroundColor = .lightGray
@@ -402,9 +402,9 @@ public class HabitViewController: UIViewController {
         deleteButton.setTitleColor(.systemRed, for: .normal)
         deleteButton.titleLabel?.font = UIFont.systemFont(ofSize: 17)
         deleteButton.addTarget(self, action: #selector(deletedHabit(_:)), for: .touchUpInside)
-
+        
     }
-   
+    
     private func getTimeFromDatePiker(date: Date) {
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm a"

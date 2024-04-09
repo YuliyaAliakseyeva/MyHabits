@@ -8,7 +8,7 @@
 import UIKit
 
 class TableHeaderView: UIView {
-
+    
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -16,7 +16,7 @@ class TableHeaderView: UIView {
         label.textColor = .systemGray
         return label
     }()
-
+    
     convenience init(title: String) {
         self.init(frame: .zero)
         
