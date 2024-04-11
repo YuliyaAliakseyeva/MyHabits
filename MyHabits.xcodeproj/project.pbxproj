@@ -14,6 +14,7 @@
 		3EB4574E2BA2E7AE0099A444 /* ProgressCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB4574D2BA2E7AE0099A444 /* ProgressCollectionViewCell.swift */; };
 		3EB457502BA2E7D20099A444 /* HabitCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB4574F2BA2E7D20099A444 /* HabitCollectionViewCell.swift */; };
 		3EB457522BA2F8060099A444 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB457512BA2F8060099A444 /* Reusable.swift */; };
+		3ECAB7362BC6A86A00D738B8 /* Information.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECAB7352BC6A86A00D738B8 /* Information.swift */; };
 		3EE88B442B974EFD005D81FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE88B432B974EFD005D81FA /* AppDelegate.swift */; };
 		3EE88B462B974EFD005D81FA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE88B452B974EFD005D81FA /* SceneDelegate.swift */; };
 		3EE88B482B974EFD005D81FA /* HabitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE88B472B974EFD005D81FA /* HabitViewController.swift */; };
@@ -33,6 +34,7 @@
 		3EB4574D2BA2E7AE0099A444 /* ProgressCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCollectionViewCell.swift; sourceTree = "<group>"; };
 		3EB4574F2BA2E7D20099A444 /* HabitCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCollectionViewCell.swift; sourceTree = "<group>"; };
 		3EB457512BA2F8060099A444 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
+		3ECAB7352BC6A86A00D738B8 /* Information.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Information.swift; sourceTree = "<group>"; };
 		3EE88B402B974EFD005D81FA /* MyHabits.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyHabits.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EE88B432B974EFD005D81FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3EE88B452B974EFD005D81FA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 				3EEDB6652BA5CA0200DC426B /* Details */,
 				3EE88B472B974EFD005D81FA /* HabitViewController.swift */,
 				3EB457462B99D7E80099A444 /* InfoViewController.swift */,
+				3ECAB7352BC6A86A00D738B8 /* Information.swift */,
 				3EEDB66C2BA8335A00DC426B /* Model */,
 				3EE88B4C2B974F03005D81FA /* Assets.xcassets */,
 				3EE88B4E2B974F03005D81FA /* LaunchScreen.storyboard */,
@@ -202,6 +205,7 @@
 				3EEDB6672BA5CA3B00DC426B /* TableHeaderView.swift in Sources */,
 				3EB457432B99C5CD0099A444 /* HabitsStore.swift in Sources */,
 				3EEDB6692BA5CDCA00DC426B /* UITableView+Extention.swift in Sources */,
+				3ECAB7362BC6A86A00D738B8 /* Information.swift in Sources */,
 				3EE88B482B974EFD005D81FA /* HabitViewController.swift in Sources */,
 				3EB4574E2BA2E7AE0099A444 /* ProgressCollectionViewCell.swift in Sources */,
 				3EB457502BA2E7D20099A444 /* HabitCollectionViewCell.swift in Sources */,

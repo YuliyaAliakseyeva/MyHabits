@@ -11,7 +11,7 @@ private enum Constants {
     static let contentViewCornerRadius: CGFloat = 8.0
 }
 
-class ProgressCollectionViewCell: UICollectionViewCell {
+final class ProgressCollectionViewCell: UICollectionViewCell {
     
     private lazy var text: UILabel = {
         let label = UILabel()

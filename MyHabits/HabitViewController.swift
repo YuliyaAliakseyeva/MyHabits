@@ -7,7 +7,7 @@
 
 import UIKit
 
-public class HabitViewController: UIViewController {
+final public class HabitViewController: UIViewController {
     
     public var store = HabitsStore.shared
     var exist = false
@@ -97,6 +97,7 @@ public class HabitViewController: UIViewController {
         addSubviews()
         setupConstrains()
         setupSubviews()
+        subscribeOnNotificationCenter()
         
     }
     
@@ -119,19 +120,36 @@ public class HabitViewController: UIViewController {
             let editedHabit = Habit(name: habitsNameTextField.text ?? "Что-то пошло не так",
                                     date: timePiker.date,
                                     color: colorImage.tintColor)
-            
-            store.habits[index!].name = editedHabit.name
-            store.habits[index!].date = editedHabit.date
-            store.habits[index!].color = editedHabit.color
+            if editedHabit.name != "" {
+                store.habits[index!].name = editedHabit.name
+                store.habits[index!].date = editedHabit.date
+                store.habits[index!].color = editedHabit.color
+            } else {
+                print("Ошибка! Отсутствует название привычки. Привычка не сохранена")
+//                habitsNameTextField.placeholder = "Ошибка! Отсутствует название привычки"
+                habitsNameTextField.attributedPlaceholder = NSAttributedString(
+                    string: "Ошибка! Отсутствует название привычки",
+                    attributes: [NSAttributedString.Key.foregroundColor: UIColor.red]
+                )
+            }
         } else {
             let newHabit = Habit(name: habitsNameTextField.text ?? "Что-то пошло не так",
                                  date: timePiker.date,
                                  color: colorImage.tintColor)
-            store.habits.append(newHabit)
-            
-            dismiss(animated: true)
-            
-            print("Привычка сохранена")
+            if newHabit.name != "" {
+                store.habits.append(newHabit)
+                
+                dismiss(animated: true)
+                
+                print("Привычка сохранена")
+            } else {
+                print("Ошибка! Отсутствует название привычки. Привычка не сохранена")
+//                habitsNameTextField.placeholder = "Ошибка! Отсутствует название привычки"
+                habitsNameTextField.attributedPlaceholder = NSAttributedString(
+                    string: "Ошибка! Отсутствует название привычки",
+                    attributes: [NSAttributedString.Key.foregroundColor: UIColor.red]
+                    )
+            }
         }
     }
     
@@ -152,12 +170,29 @@ public class HabitViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "Удалить", style: .default, handler: { [self]action in 
             store.habits.remove(at: index!)
             print("Привычка удалена")
+            dismiss(animated: false)
+            
+            NotificationCenter.default.post(name: .deleteHabit, object: nil)
+            
         }))
         
         alert.modalTransitionStyle = .flipHorizontal
         alert.modalPresentationStyle = .pageSheet
         
         present(alert, animated: true)
+    }
+    
+    func subscribeOnNotificationCenter() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(notificationAction),
+            name: .deleteHabit,
+            object: nil
+        )
+    }
+    
+    @objc func notificationAction() {
+        print("Подписка на notification center")
     }
     
     private func setupView() {
@@ -424,5 +459,9 @@ extension HabitViewController: UITextFieldDelegate {
         
         return true
     }
+}
+
+extension NSNotification.Name {
+    static let deleteHabit = NSNotification.Name(rawValue: "deleteHabit")
 }
 

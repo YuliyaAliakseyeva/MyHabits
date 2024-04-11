@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HabitCollectionViewCell: UICollectionViewCell {
+final class HabitCollectionViewCell: UICollectionViewCell {
     
     private enum Constants {
         static let contentViewCornerRadius: CGFloat = 8.0

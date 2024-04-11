@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailsTableViewCell: UITableViewCell {
+final class DetailsTableViewCell: UITableViewCell {
     
     override init(
         style: UITableViewCell.CellStyle,

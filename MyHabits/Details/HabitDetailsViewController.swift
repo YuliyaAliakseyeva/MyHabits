@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HabitDetailsViewController: UIViewController {
+final class HabitDetailsViewController: UIViewController {
     
     var indexOfHabit: Int?
     var habit = Habit(name: "", date: .now, color: .red)
@@ -33,6 +33,7 @@ class HabitDetailsViewController: UIViewController {
         addSubviews()
         setupConstraints()
         tuneTableView()
+        subscribeOnNotificationCenter()
         
         let editHabitButton = UIBarButtonItem(title: "Править", style: .plain, target: self, action: #selector(editButton))
         
@@ -85,6 +86,20 @@ class HabitDetailsViewController: UIViewController {
         
         detailsTableView.dataSource = self
         detailsTableView.delegate = self
+    }
+    
+    func subscribeOnNotificationCenter() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(notificationAction),
+            name: .deleteHabit,
+            object: nil
+        )
+    }
+    
+    @objc func notificationAction() {
+        navigationController?.popViewController(animated: false)
+        
     }
 }
 

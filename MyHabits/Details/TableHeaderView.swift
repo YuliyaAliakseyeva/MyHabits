@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TableHeaderView: UIView {
+final class TableHeaderView: UIView {
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
